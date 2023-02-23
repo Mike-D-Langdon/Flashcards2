@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_22_052820) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_23_041318) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_052820) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_flashcards_on_user_id"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.bigint "flashcard_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flashcard_id"], name: "index_taggings_on_flashcard_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -39,5 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_22_052820) do
   end
 
   add_foreign_key "flashcards", "users"
+  add_foreign_key "taggings", "flashcards"
+  add_foreign_key "taggings", "tags"
   add_foreign_key "tags", "users"
 end
