@@ -6,4 +6,5 @@ class Tag < ApplicationRecord
 
   validates :question, presence: true
   validates :answer, presence: true
+  validates :name, presence: true, uniqueness: { scope: :user_id }
 end
