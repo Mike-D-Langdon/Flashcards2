@@ -12,10 +12,10 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create tag" do
     assert_difference("Tag.count") do
-      post tags_url, params: { tag: { name: @tag.name, user_id: @tag.user_id } }, as: :json
+      post tags_url, params: { tag: { name: 'Some Tag', user_id: @tag.user_id } }, as: :json
     end
 
-    assert_response :created
+    assert_response 201
   end
 
   test "should show tag" do
@@ -24,8 +24,8 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update tag" do
-    patch tag_url(@tag), params: { tag: { name: @tag.name, user_id: @tag.user_id } }, as: :json
-    assert_response :success
+    patch tag_url(@tag), params: { tag: { name: 'Some Tag', user_id: @tag.user_id } }, as: :json
+    assert_response 200
   end
 
   test "should destroy tag" do
